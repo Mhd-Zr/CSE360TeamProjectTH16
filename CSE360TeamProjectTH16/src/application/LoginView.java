@@ -2,6 +2,7 @@ package application;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
@@ -13,6 +14,11 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 
 public class LoginView {
     private VBox view;
@@ -84,11 +90,10 @@ public class LoginView {
         String password = passwordField.getText();
 
         // Perform authentication logic
-        // If successful, load the appropriate view based on user role
         if (authenticateUser(username, password)) {
-            // Load doctor, nurse, or patient view based on user role
-            // You can use a separate method or class to handle the navigation
-            // For example: NavigationManager.loadView(userRole);
+            // Load the appropriate view based on user role
+            // Replace this with your actual navigation logic
+            System.out.println("Login successful. Loading user view...");
         } else {
             errorLabel.setText("Incorrect HealthNest ID or password.");
             errorLabel.setVisible(true);
@@ -96,16 +101,32 @@ public class LoginView {
     }
 
     private boolean authenticateUser(String username, String password) {
-        // Implement authentication logic here
-        // You can use a database or a service to validate the credentials
-        // For simplicity, let's assume authentication is successful if username and password are not empty
-        return !username.isEmpty() && !password.isEmpty();
+        // Read user credentials from the file
+        try (BufferedReader reader = new BufferedReader(new FileReader("users.txt"))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] userData = line.split(",");
+                if (userData.length == 6) {
+                    String storedUsername = userData[4];
+                    String storedPassword = userData[5];
+                    if (username.equals(storedUsername) && password.equals(storedPassword)) {
+                        return true;
+                    }
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            // Display an error message if file read fails
+        }
+        return false;
     }
 
     private void handleCreateAccount() {
         // Navigate to the account creation view
-        // You can use a separate method or class to handle the navigation
-        // For example: NavigationManager.loadView("CreateAccountView");
+        CreateAccountView createAccountView = new CreateAccountView();
+        Scene scene = new Scene(createAccountView.getView(), 800, 600);
+        Stage stage = (Stage) view.getScene().getWindow();
+        stage.setScene(scene);
     }
 
     public VBox getView() {
