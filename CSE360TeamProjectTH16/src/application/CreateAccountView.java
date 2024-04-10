@@ -7,7 +7,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -24,6 +26,9 @@ public class CreateAccountView {
     private TextField phoneField;
     private TextField emailField;
     private PasswordField passwordField;
+    private RadioButton doctorRadioButton;
+    private RadioButton nurseRadioButton;
+    private RadioButton patientRadioButton;
     private Button createAccountButton;
 
     public CreateAccountView() {
@@ -47,6 +52,19 @@ public class CreateAccountView {
         
         Label passwordLabel = new Label("Password:");
         passwordField = new PasswordField();
+        
+        Label roleLabel = new Label("Role:");
+        ToggleGroup roleToggleGroup = new ToggleGroup();
+
+        doctorRadioButton = new RadioButton("Doctor");
+        doctorRadioButton.setToggleGroup(roleToggleGroup);
+
+        nurseRadioButton = new RadioButton("Nurse");
+        nurseRadioButton.setToggleGroup(roleToggleGroup);
+
+        patientRadioButton = new RadioButton("Patient");
+        patientRadioButton.setToggleGroup(roleToggleGroup);
+        patientRadioButton.setSelected(true);
 
         createAccountButton = new Button("Sign Up!");
         createAccountButton.setOnAction(e -> handleCreateAccount());
@@ -71,7 +89,11 @@ public class CreateAccountView {
         grid.add(emailField, 1, 5);
         grid.add(passwordLabel, 0, 6);
         grid.add(passwordField, 1, 6);
-        grid.add(createAccountButton, 1, 7);
+        grid.add(roleLabel, 0, 7);
+        grid.add(doctorRadioButton, 1, 7);
+        grid.add(nurseRadioButton, 1, 8);
+        grid.add(patientRadioButton, 1, 9);
+        grid.add(createAccountButton, 1, 10);
 
         view = new VBox(grid);
     }
@@ -84,16 +106,25 @@ public class CreateAccountView {
         String email = emailField.getText();
         String password = passwordField.getText();
         
+        String role = "";
+        if (doctorRadioButton.isSelected()) {
+            role = "Doctor";
+        } else if (nurseRadioButton.isSelected()) {
+            role = "Nurse";
+        } else if (patientRadioButton.isSelected()) {
+            role = "Patient";
+        }
+        
 
         // Perform validation
-        if (firstName.isEmpty() || lastName.isEmpty() || dob == null || phone.isEmpty() || email.isEmpty() || password.isEmpty()) {
+        if (firstName.isEmpty() || lastName.isEmpty() || dob == null || phone.isEmpty() || email.isEmpty() || password.isEmpty() || role.isEmpty()) {
             // Display an error message if any field is empty
             // You can use an Alert or a Label to show the message
             return;
         }
 
         // Create a User object with the entered details
-        User newUser = new User(firstName, lastName, dob, phone, email, password);
+        User newUser = new User(firstName, lastName, dob, phone, email, password, role);
 
         // Save the user details to a file
         saveUserToFile(newUser);

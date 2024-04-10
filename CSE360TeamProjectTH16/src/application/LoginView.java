@@ -19,6 +19,7 @@ import javafx.stage.Stage;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.time.LocalDate;
 
 public class LoginView {
     private VBox view;
@@ -90,27 +91,54 @@ public class LoginView {
         String password = passwordField.getText();
 
         // Perform authentication logic
-        if (authenticateUser(username, password)) {
-            // Load the appropriate view based on user role
-            // Replace this with your actual navigation logic
-            System.out.println("Login successful. Loading user view...");
+        User authenticatedUser = authenticatedUser(username, password);
+        
+        if (authenticatedUser != null) {
+        	// Navigate to the appropriate view based on user role
+            String userRole = authenticatedUser.getRole();
+            switch (userRole) {
+                case "Doctor":
+                    // Navigate to DoctorView
+                    navigateToDoctorView(authenticatedUser);
+                    break;
+                case "Nurse":
+                    // Navigate to NurseView
+                    navigateToNurseView(authenticatedUser);
+                    break;
+                case "Patient":
+                    // Navigate to PatientView
+                    navigateToPatientView(authenticatedUser);
+                    break;
+                default:
+                    // Handle unknown role
+                    System.out.println("Unknown user role: " + userRole);
+                    break;
+            }
         } else {
             errorLabel.setText("Incorrect HealthNest ID or password.");
             errorLabel.setVisible(true);
         }
     }
 
-    private boolean authenticateUser(String username, String password) {
+    private User authenticatedUser(String username, String password) {
         // Read user credentials from the file
         try (BufferedReader reader = new BufferedReader(new FileReader("users.txt"))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] userData = line.split(",");
-                if (userData.length == 6) {
+                if (userData.length == 7) {
                     String storedUsername = userData[4];
                     String storedPassword = userData[5];
+                    System.out.println(storedUsername);
                     if (username.equals(storedUsername) && password.equals(storedPassword)) {
-                        return true;
+                    	// Create a User object with the authenticated user's details
+                        String firstName = userData[0];
+                        String lastName = userData[1];
+                        LocalDate dob = LocalDate.parse(userData[2]);
+                        String phone = userData[3];
+                        String email = userData[4];
+                        String role = userData[6];
+                        return new User(firstName, lastName, dob, phone, email, password, role);
                     }
                 }
             }
@@ -118,7 +146,32 @@ public class LoginView {
             e.printStackTrace();
             // Display an error message if file read fails
         }
-        return false;
+        return null;
+    }
+    
+    private void navigateToDoctorView(User user) {
+        // Create an instance of DoctorView and navigate to it
+        DoctorView doctorView = new DoctorView(user);
+        Scene scene = new Scene(doctorView.getView(), 800, 600);
+        Stage stage = (Stage) view.getScene().getWindow();
+        stage.setScene(scene);
+    }
+
+    private void navigateToNurseView(User user) {
+        // Create an instance of NurseView and navigate to it
+    	NurseView nurseView = new NurseView(user);
+        Scene scene = new Scene(nurseView.getView(), 800, 600);
+        Stage stage = (Stage) view.getScene().getWindow();
+        stage.setScene(scene);
+    }
+
+    private void navigateToPatientView(User user) {
+        // Create an instance of PatientView and navigate to it
+		/*
+		 * PatientView patientView = new PatientView(user); Scene scene = new
+		 * Scene(patientView.getView(), 800, 600); Stage stage = (Stage)
+		 * view.getScene().getWindow(); stage.setScene(scene);
+		 */
     }
 
     private void handleCreateAccount() {
