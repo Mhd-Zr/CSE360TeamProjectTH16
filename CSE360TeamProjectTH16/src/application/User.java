@@ -22,6 +22,10 @@ public class User {
     }
 
     // Getters and setters
+    public String getEmail() {
+    	return email;
+    }
+    
     public String getRole() {
     	return role;
     }

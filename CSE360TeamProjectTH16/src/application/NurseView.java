@@ -10,9 +10,12 @@ import javafx.stage.Stage;
 
 public class NurseView {
     private VBox view;
+    private User currentUser;
 
-    public NurseView() {
+    public NurseView(User user) {
         // Initialize UI components
+    	this.currentUser = user;
+    	
         Label titleLabel = new Label("Nurse Portal");
         titleLabel.setStyle("-fx-font-size: 24px; -fx-font-weight: bold;");
 
@@ -22,6 +25,9 @@ public class NurseView {
         Button patientQuestionnaireButton = new Button("Patient Questionnaire");
         patientQuestionnaireButton.setOnAction(e -> handlePatientQuestionnaireButton());
 
+        Button patientRecordsButton = new Button("Patient Records");
+        patientRecordsButton.setOnAction(e -> handlePatientRecordsButton());
+
         Button logoutButton = new Button("Logout");
         logoutButton.setOnAction(e -> handleLogoutButton());
 
@@ -29,17 +35,28 @@ public class NurseView {
         view = new VBox(10);
         view.setAlignment(Pos.CENTER);
         view.setPadding(new Insets(20));
-        view.getChildren().addAll(titleLabel, messagesButton, patientQuestionnaireButton, logoutButton);
+        view.getChildren().addAll(titleLabel, messagesButton, patientQuestionnaireButton, patientRecordsButton, logoutButton);
     }
 
     private void handleMessagesButton() {
-        // TODO: Implement the messaging functionality
-        System.out.println("Messages button clicked");
+    	MessagingView messagingView = new MessagingView(currentUser);
+        Scene scene = new Scene(messagingView.getView(), 800, 600);
+        Stage stage = (Stage) view.getScene().getWindow();
+        stage.setScene(scene);
     }
 
     private void handlePatientQuestionnaireButton() {
-        // TODO: Implement the patient questionnaire functionality
-        System.out.println("Patient Questionnaire button clicked");
+    	PatientQuestionnaireView questionnaireView = new PatientQuestionnaireView(currentUser);
+        Scene scene = new Scene(questionnaireView.getView(), 800, 600);
+        Stage stage = (Stage) view.getScene().getWindow();
+        stage.setScene(scene);
+    }
+    
+    private void handlePatientRecordsButton() {
+        PatientRecordsView patientRecordsView = new PatientRecordsView(currentUser);
+        Scene scene = new Scene(patientRecordsView.getView(), 800, 600);
+        Stage stage = (Stage) view.getScene().getWindow();
+        stage.setScene(scene);
     }
 
     private void handleLogoutButton() {

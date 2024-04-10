@@ -10,8 +10,11 @@ import javafx.stage.Stage;
 
 public class DoctorView {
     private VBox view;
+    private User currentUser;
 
-    public DoctorView() {
+    public DoctorView(User user) {
+    	currentUser = user;
+    	
         // Initialize UI components
         Label titleLabel = new Label("Doctor Portal");
         titleLabel.setStyle("-fx-font-size: 24px; -fx-font-weight: bold;");
@@ -33,13 +36,17 @@ public class DoctorView {
     }
 
     private void handleMessagesButton() {
-        // TODO: Implement the messaging functionality
-        System.out.println("Messages button clicked");
+    	MessagingView messagingView = new MessagingView(currentUser);
+        Scene scene = new Scene(messagingView.getView(), 800, 600);
+        Stage stage = (Stage) view.getScene().getWindow();
+        stage.setScene(scene);
     }
 
     private void handlePatientRecordsButton() {
-        // TODO: Implement the patient records functionality
-        System.out.println("Patient Records button clicked");
+    	PatientRecordsView patientRecordsView = new PatientRecordsView(currentUser);
+        Scene scene = new Scene(patientRecordsView.getView(), 800, 600);
+        Stage stage = (Stage) view.getScene().getWindow();
+        stage.setScene(scene);
     }
 
     private void handleLogoutButton() {

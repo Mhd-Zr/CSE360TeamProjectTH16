@@ -99,15 +99,15 @@ public class LoginView {
             switch (userRole) {
                 case "Doctor":
                     // Navigate to DoctorView
-                    navigateToDoctorView();
+                    navigateToDoctorView(authenticatedUser);
                     break;
                 case "Nurse":
                     // Navigate to NurseView
-                    navigateToNurseView();
+                    navigateToNurseView(authenticatedUser);
                     break;
                 case "Patient":
                     // Navigate to PatientView
-                    navigateToPatientView();
+                    navigateToPatientView(authenticatedUser);
                     break;
                 default:
                     // Handle unknown role
@@ -149,26 +149,26 @@ public class LoginView {
         return null;
     }
     
-    private void navigateToDoctorView() {
+    private void navigateToDoctorView(User user) {
         // Create an instance of DoctorView and navigate to it
-        DoctorView doctorView = new DoctorView();
+        DoctorView doctorView = new DoctorView(user);
         Scene scene = new Scene(doctorView.getView(), 800, 600);
         Stage stage = (Stage) view.getScene().getWindow();
         stage.setScene(scene);
     }
 
-    private void navigateToNurseView() {
+    private void navigateToNurseView(User user) {
         // Create an instance of NurseView and navigate to it
-    	NurseView nurseView = new NurseView();
+    	NurseView nurseView = new NurseView(user);
         Scene scene = new Scene(nurseView.getView(), 800, 600);
         Stage stage = (Stage) view.getScene().getWindow();
         stage.setScene(scene);
     }
 
-    private void navigateToPatientView() {
+    private void navigateToPatientView(User user) {
         // Create an instance of PatientView and navigate to it
 		/*
-		 * PatientView patientView = new PatientView(); Scene scene = new
+		 * PatientView patientView = new PatientView(user); Scene scene = new
 		 * Scene(patientView.getView(), 800, 600); Stage stage = (Stage)
 		 * view.getScene().getWindow(); stage.setScene(scene);
 		 */
