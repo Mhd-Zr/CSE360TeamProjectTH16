@@ -1,2 +1,0 @@
-Mhd,Zr,2024-04-24,4444432234,testing@test.com,hello
-Anastasia,I,2024-04-17,1234,Asia@mail,klop123
