@@ -88,6 +88,7 @@ public class PatientQuestionnaireView {
         NurseView nurseView = new NurseView(currentUser);
         Scene scene = new Scene(nurseView.getView(), 800, 600);
         Stage stage = (Stage) view.getScene().getWindow();
+        scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
         stage.setScene(scene);
     }
 

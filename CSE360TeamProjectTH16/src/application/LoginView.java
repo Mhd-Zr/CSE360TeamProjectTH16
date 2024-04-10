@@ -1,5 +1,6 @@
 package application;
 
+import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -8,7 +9,12 @@ import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -31,8 +37,19 @@ public class LoginView {
 
     public LoginView() {
         // Initialize UI components
-        Text title = new Text("HealthNest");
-        title.setFont(Font.font("Arial", FontWeight.BOLD, 24));
+    	Image image = new Image("logo.png");
+    	ImageView icon = new ImageView(image);
+    	icon.setFitWidth(150);
+        icon.setFitHeight(150);
+		
+        Text title = new Text("Health");
+        title.setFont(Font.font("Georgia", FontWeight.BOLD, 45));
+        title.setFill(Color.DARKOLIVEGREEN);
+        Text title1 = new Text("Nest");
+        title1.setFont(Font.font("Georgia", FontWeight.BOLD, 50));
+        title1.setFill(Color.GREENYELLOW);
+        HBox container = new HBox(title, title1);
+        
 
         Label usernameLabel = new Label("HealthNest ID:");
         usernameField = new TextField();
@@ -61,19 +78,26 @@ public class LoginView {
 
         // Arrange components in a grid layout
         GridPane grid = new GridPane();
+        VBox vbox = new VBox();
+        vbox.setAlignment(Pos.CENTER);
+        
         grid.setAlignment(Pos.CENTER);
-        grid.setHgap(10);
-        grid.setVgap(10);
-        grid.setPadding(new Insets(25, 25, 25, 25));
+        grid.setHgap(5);
+        grid.setVgap(5);
+        grid.setPadding(new Insets(0));
 
-        grid.add(title, 0, 0, 2, 1);
-        grid.add(usernameLabel, 0, 1);
-        grid.add(usernameField, 1, 1);
-        grid.add(passwordLabel, 0, 2);
-        grid.add(passwordField, 1, 2);
-        grid.add(loginButton, 1, 3);
-        grid.add(createAccountLink, 1, 4);
-        grid.add(errorLabel, 1, 5);
+        vbox.getChildren().addAll(icon, container);
+        
+        grid.add(vbox, 0, 0);
+        GridPane.setHalignment(vbox, HPos.CENTER);
+        
+        grid.add(usernameLabel, 0, 3);
+        grid.add(usernameField, 1, 3);
+        grid.add(passwordLabel, 0, 4);
+        grid.add(passwordField, 1, 4);
+        grid.add(loginButton, 1, 5);
+        grid.add(createAccountLink, 0, 6);
+        grid.add(errorLabel, 0, 7);
 
         view = new VBox(grid);
     }
@@ -154,6 +178,7 @@ public class LoginView {
         DoctorView doctorView = new DoctorView(user);
         Scene scene = new Scene(doctorView.getView(), 800, 600);
         Stage stage = (Stage) view.getScene().getWindow();
+        scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
         stage.setScene(scene);
     }
 
@@ -162,6 +187,7 @@ public class LoginView {
     	NurseView nurseView = new NurseView(user);
         Scene scene = new Scene(nurseView.getView(), 800, 600);
         Stage stage = (Stage) view.getScene().getWindow();
+        scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
         stage.setScene(scene);
     }
 
@@ -179,6 +205,7 @@ public class LoginView {
         CreateAccountView createAccountView = new CreateAccountView();
         Scene scene = new Scene(createAccountView.getView(), 800, 600);
         Stage stage = (Stage) view.getScene().getWindow();
+        scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
         stage.setScene(scene);
     }
 

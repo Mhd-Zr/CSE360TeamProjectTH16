@@ -47,6 +47,7 @@ public class PatientView {
         LoginView loginView = new LoginView();
         Scene scene = new Scene(loginView.getView(), 800, 600);
         Stage stage = (Stage) view.getScene().getWindow();
+        scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
         stage.setScene(scene);
     }
 
