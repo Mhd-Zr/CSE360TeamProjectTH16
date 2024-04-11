@@ -117,11 +117,19 @@ public class PatientRecordsView {
 
     private void handleBackButton() {
         // Navigate back to the doctor view
-        DoctorView doctorView = new DoctorView(currentUser);
-        Scene scene = new Scene(doctorView.getView(), 800, 600);
+    	if (currentUser.getRole() == "Doctor") {
+    		DoctorView doctorView = new DoctorView(currentUser);
+            Scene scene = new Scene(doctorView.getView(), 800, 600);
+            Stage stage = (Stage) view.getScene().getWindow();
+            scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+            stage.setScene(scene);
+    	} else {
+        NurseView nurseView = new NurseView(currentUser);
+        Scene scene = new Scene(nurseView.getView(), 800, 600);
         Stage stage = (Stage) view.getScene().getWindow();
         scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
         stage.setScene(scene);
+    	}
     }
 
     private void searchPatients(String searchTerm) {
