@@ -13,22 +13,27 @@ public class NurseView {
     private User currentUser;
 
     public NurseView(User user) {
+        this.currentUser = user;
+        
         // Initialize UI components
-    	this.currentUser = user;
-    	
         Label titleLabel = new Label("Nurse Portal");
-        titleLabel.setStyle("-fx-font-size: 24px; -fx-font-weight: bold;");
+        // Remove inline style and use CSS class
+        titleLabel.getStyleClass().add("title-label");
 
         Button messagesButton = new Button("Messages");
+        messagesButton.getStyleClass().add("button");
         messagesButton.setOnAction(e -> handleMessagesButton());
 
         Button patientQuestionnaireButton = new Button("Patient Questionnaire");
+        patientQuestionnaireButton.getStyleClass().add("button");
         patientQuestionnaireButton.setOnAction(e -> handlePatientQuestionnaireButton());
 
         Button patientRecordsButton = new Button("Patient Records");
+        patientRecordsButton.getStyleClass().add("button");
         patientRecordsButton.setOnAction(e -> handlePatientRecordsButton());
 
         Button logoutButton = new Button("Logout");
+        logoutButton.getStyleClass().add("button");
         logoutButton.setOnAction(e -> handleLogoutButton());
 
         // Arrange components in a VBox layout

@@ -1,12 +1,48 @@
-/* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
-.root{
-	-fx-background-color: #fff9eb;
+
+.root {
+    -fx-background-color: #fff9eb;
 }
 
-.label{
-	-fx-font-size: 20;
+.label {
+    -fx-font-size: 20;
 }
 
-.image{
-	-fx-alignment: center; 
+.image {
+    -fx-alignment: center; 
+}
+
+
+
+/* Styles for title labels */
+.title-label {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-font-family: Arial;
+}
+
+/* Styles for buttons to match the DoctorView and NurseView requirements */
+.button {
+    -fx-font-family: Arial;
+    -fx-font-weight: normal;
+    -fx-font-size: 14px;
+    -fx-padding: 5 10; /* Add padding for a better visual appearance */
+    -fx-background-color: #e7e7e7; /* A neutral color for the button background */
+}
+
+/* Hover effect for buttons */
+.button:hover {
+    -fx-background-color: #d3d3d3; /* Slightly darker shade when hovering */
+}
+
+/* Additional improvements */
+
+/* Ensure labels are easily readable */
+.label {
+    -fx-text-fill: #000; /* Ensuring high contrast text for readability */
+    -fx-font-family: Arial; /* Consistency in font family across the application */
+}
+
+/* Enhance accessibility and user interaction */
+.button {
+    -fx-cursor: hand; /* Change cursor to hand when hovering over buttons */
 }
