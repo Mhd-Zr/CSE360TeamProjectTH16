@@ -214,12 +214,10 @@ public class MessagingView {
     }
 
     private void navigateToPatientView(User user) {
-		/*
-		 * PatientView patientView = new PatientView(user);
-		 * Scene scene = new Scene(patientView.getView(), 800, 600);
-		 * Stage stage = (Stage) view.getScene().getWindow();
-		 * stage.setScene(scene);
-		 */
+    	PatientView patientView = new PatientView(user);
+    	Scene scene = new Scene(patientView.getView(), 800, 600);
+    	Stage stage = (Stage) view.getScene().getWindow();
+    	stage.setScene(scene);
     }
 
     public BorderPane getView() {
