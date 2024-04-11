@@ -69,28 +69,51 @@ public class PrescriptionView {
     }
 
     private void handleAddPrescription() {
+
         String patientName = patientNameField.getText();
+
         String prescription = prescriptionField.getText();
 
+
+
         if (!patientName.isEmpty() && !prescription.isEmpty()) {
+
             String prescriptionEntry = "Doctor: " + currentDoctor.getFirstName() + " " + currentDoctor.getLastName() +
+
                     "\nPatient: " + patientName +
+
                     "\nPrescription: " + prescription +
+
                     "\n-----------------------------";
 
+
+
             try (FileWriter writer = new FileWriter("prescriptions.txt", true)) {
+
                 writer.write(prescriptionEntry + "\n");
+
                 AlertDialog.showInformationDialog("Prescription Added", "Success", "Prescription added successfully.");
+
                 clearFields();
-                loadPrescriptions();
+
+                prescriptionList.getItems().add(prescriptionEntry); // Add the new prescription entry to the list view
+
             } catch (IOException e) {
+
                 e.printStackTrace();
+
                 AlertDialog.showErrorDialog("Error", "Prescription Addition Failed", "Failed to add prescription. Please try again.");
+
             }
+
         } else {
+
             AlertDialog.showWarningDialog("Warning", "Incomplete Information", "Please enter both patient name and prescription.");
+
         }
+
     }
+
 
     private void handlePrescriptionClick() {
         String selectedPrescription = prescriptionList.getSelectionModel().getSelectedItem();
@@ -105,26 +128,77 @@ public class PrescriptionView {
         Stage stage = (Stage) view.getScene().getWindow();
         stage.setScene(scene);
     }
+    
+    
 
     private void loadPrescriptions() {
+
         prescriptionList.getItems().clear();
+
         try {
+
             List<String> lines = Files.readAllLines(Paths.get("prescriptions.txt"));
-            for (int i = 0; i < lines.size(); i += 5) {
-                String doctorLine = lines.get(i);
-                String doctorName = doctorLine.substring(doctorLine.indexOf(":") + 2);
 
-                if (doctorName.equals(currentDoctor.getFirstName() + " " + currentDoctor.getLastName())) {
-                    String prescriptionEntry = String.join("\n", lines.subList(i, i + 4));
-                    prescriptionList.getItems().add(prescriptionEntry);
+            StringBuilder prescriptionBuilder = new StringBuilder();
+
+            boolean isPrescriptionFound = false;
+
+
+
+            for (int i = 0; i < lines.size(); i++) {
+
+                String line = lines.get(i);
+
+                if (line.startsWith("Doctor:")) {
+
+                    String doctorName = line.substring(line.indexOf(":") + 2);
+
+                    if (doctorName.equals(currentDoctor.getFirstName() + " " + currentDoctor.getLastName())) {
+
+
+                        isPrescriptionFound = true;
+
+                        prescriptionBuilder.append(line).append("\n");
+
+                    } else {
+
+                        if (isPrescriptionFound) {
+
+                            prescriptionList.getItems().add(prescriptionBuilder.toString());
+
+                            prescriptionBuilder.setLength(0);
+
+                            isPrescriptionFound = false;
+
+                        }
+
+                    }
+
+                } else if (isPrescriptionFound) {
+
+                    prescriptionBuilder.append(line).append("\n");
+
                 }
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-            AlertDialog.showErrorDialog("Error", "Failed to Load Prescriptions", "Failed to load prescriptions. Please try again.");
-        }
-    }
 
+            }
+
+
+
+            if (isPrescriptionFound) {
+
+                prescriptionList.getItems().add(prescriptionBuilder.toString());
+
+            }
+
+        } catch (IOException e) {
+
+            e.printStackTrace();
+
+            AlertDialog.showErrorDialog("Error", "Failed to Load Prescriptions", "Failed to load prescriptions. Please try again.");
+
+        }
+
+    }
     private void clearFields() {
         patientNameField.clear();
         prescriptionField.clear();

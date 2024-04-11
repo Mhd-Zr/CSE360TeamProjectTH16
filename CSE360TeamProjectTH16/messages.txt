@@ -4,3 +4,9 @@ a@b.c,h@hello.com,New message
 Jane@mail.com,test@test.com,Hey Nerd
 aivanov6@asu.edu,Jane@mail.com,Hey bestie!
 nurse@test.com,aivanov6@asu.edu,Heres a bajillion $$$$
+test@test.com,aivanov6@asu.edu,Be healthier or something UwU
+email@email.com,test@test.com,NIce to see ya dude bro
+test@test.com,aivanov6@asu.edu,hi how are upi
+star@mail.edu,aivanov6@asu.edu,hello hello hi
+test@test.com,patient1234,hey ahow are you diing
+aivanov6@asu.edu,star@mail.edu,Hello

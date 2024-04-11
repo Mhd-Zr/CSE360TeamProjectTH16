@@ -2,3 +2,31 @@ Doctor: Mhd Zr
 Patient: Patient 1
 Prescription: Vitamins
 -----------------------------
+Doctor: Mhd Zr
+Patient: Jane Doe
+Prescription: Candy
+-----------------------------
+Doctor: Mhd Zr
+Patient: Anastasia Ivanova
+Prescription: Candy
+-----------------------------
+Doctor: Mhd Zr
+Patient: Anastasia Ivanova
+Prescription: Sadness :(
+-----------------------------
+Doctor: Mhd Zr
+Patient: Jane Doe
+Prescription: Xanax
+-----------------------------
+Doctor: Mhd Zr
+Patient: Sheryl Arya
+Prescription: Free pizza
+-----------------------------
+Doctor: Mhd Zr
+Patient: Ttushar
+Prescription: Zzerodol.
+-----------------------------
+Doctor: Mhd Zr
+Patient: Ttushar
+Prescription: Zzerodol
+-----------------------------

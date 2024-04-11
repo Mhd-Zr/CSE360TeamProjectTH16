@@ -117,7 +117,7 @@ public class PatientRecordsView {
 
     private void handleBackButton() {
         // Navigate back to the doctor view
-    	if (currentUser.getRole() == "Doctor") {
+    	if (currentUser.getRole().equals("Doctor")) {
     		DoctorView doctorView = new DoctorView(currentUser);
             Scene scene = new Scene(doctorView.getView(), 800, 600);
             Stage stage = (Stage) view.getScene().getWindow();

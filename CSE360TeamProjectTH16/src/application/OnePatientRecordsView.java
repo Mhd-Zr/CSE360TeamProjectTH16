@@ -51,7 +51,7 @@ public class OnePatientRecordsView {
     }
 
     private boolean loadPatientRecords() {
-        String patientFile = "patient_records/" + currentPatient.getFirstName() + "_" + currentPatient.getLastName() + ".txt";
+        String patientFile = "patient_records/" + currentPatient.getFirstName() + " " + currentPatient.getLastName() + ".txt";
         File file = new File(patientFile);
 
         if (file.exists()) {
