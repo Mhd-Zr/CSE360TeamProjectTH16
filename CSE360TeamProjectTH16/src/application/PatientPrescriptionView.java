@@ -61,20 +61,43 @@ public class PatientPrescriptionView {
         prescriptionList.getItems().clear();
         try {
             List<String> lines = Files.readAllLines(Paths.get("prescriptions.txt"));
-            for (int i = 0; i < lines.size(); i += 5) {
-                String patientLine = lines.get(i + 1);
-                String patientName = patientLine.substring(patientLine.indexOf(":") + 2);
+            StringBuilder prescriptionBuilder = new StringBuilder();
+            boolean isPrescriptionFound = false;
 
-                if (patientName.equals(currentPatient.getFirstName() + " " + currentPatient.getLastName())) {
-                    String prescriptionEntry = String.join("\n", lines.subList(i, i + 4));
-                    prescriptionList.getItems().add(prescriptionEntry);
+            for (int i = 0; i < lines.size(); i++) {
+                String line = lines.get(i);
+                if (line.startsWith("Patient:")) {
+                    String patientName = line.substring(line.indexOf(":") + 2);
+                    if (patientName.equals(currentPatient.getFirstName() + " " + currentPatient.getLastName())) {
+                        isPrescriptionFound = true;
+                        prescriptionBuilder.append(line).append("\n");
+                    } else {
+                        if (isPrescriptionFound) {
+                            prescriptionList.getItems().add(prescriptionBuilder.toString());
+                            prescriptionBuilder.setLength(0);
+                            isPrescriptionFound = false;
+                        }
+                    }
+                } else if (isPrescriptionFound) {
+                    prescriptionBuilder.append(line).append("\n");
                 }
+
+                if (i == lines.size() - 1 && isPrescriptionFound) {
+                    prescriptionList.getItems().add(prescriptionBuilder.toString());
+                }
+            }
+
+            if (prescriptionList.getItems().isEmpty()) {
+                prescriptionList.setPlaceholder(new Label("No prescriptions found for the current patient."));
+
+
             }
         } catch (IOException e) {
             e.printStackTrace();
             AlertDialog.showErrorDialog("Error", "Failed to Load Prescriptions", "Failed to load prescriptions. Please try again.");
         }
     }
+
 
     public BorderPane getView() {
         loadPrescriptions();

@@ -6,3 +6,5 @@ HI,hi,2024-04-15,555,4,4,Patient
 Jane,Doe,2024-04-01,12345,Jane@mail.com,abc,Doctor
 TestNurse,NurseTest,2020-04-13,98765432,nurse@test.com,abc,Nurse
 Patient,2,2020-04-13,4454333,patient2@test.com,abc,Patient
+Nurse,Test,2024-01-02,12345678,email@email.com,1234,Nurse
+Britney,Spears,2015-04-08,1234567890,star@mail.edu,123abc,Nurse
