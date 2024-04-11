@@ -1,3 +1,6 @@
 a@b.c,test@test.com,Hello
 a@b.c,test@testing.com,GGGGG
 a@b.c,h@hello.com,New message
+Jane@mail.com,test@test.com,Hey Nerd
+aivanov6@asu.edu,Jane@mail.com,Hey bestie!
+nurse@test.com,aivanov6@asu.edu,Heres a bajillion $$$$

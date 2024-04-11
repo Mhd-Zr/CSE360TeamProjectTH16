@@ -45,15 +45,23 @@ public class DoctorView {
     }
     
     private void handleMessagesButton() {
-        navigateToView(new MessagingView(currentUser));
+       
+        MessagingView messagingView = new MessagingView(currentUser);
+        Scene scene = new Scene(messagingView.getView(), 800, 600);
+        Stage stage = (Stage) view.getScene().getWindow();
+        stage.setScene(scene);
     }
 
     private void handlePatientRecordsButton() {
-        navigateToView(new PatientRecordsView(currentUser));
+        
+        PatientRecordsView patientRecordsView = new PatientRecordsView(currentUser);
+        Scene scene = new Scene(patientRecordsView.getView(), 800, 600);
+        Stage stage = (Stage) view.getScene().getWindow();
+        stage.setScene(scene);
     }
     
     private void handlePrescriptionsButton() {
-        PrescriptionView prescriptionView = new PrescriptionView(currentUser);
+    	PrescriptionView prescriptionView = new PrescriptionView(currentUser);
         Scene scene = new Scene(prescriptionView.getView(), 800, 600);
         Stage stage = (Stage) view.getScene().getWindow();
         stage.setScene(scene);
@@ -61,13 +69,10 @@ public class DoctorView {
 
     private void handleLogoutButton() {
         // Navigate back to the login view using a utility method for scene switching
-        navigateToView(new LoginView());
-    }
-    
-    // Utility method to switch views to reduce code duplication
-    private void navigateToView(Object view) {
-        Scene scene = new Scene(((HasView) view).getView(), 800, 600);
-        Stage stage = (Stage) this.view.getScene().getWindow();
+     
+        LoginView loginView = new LoginView();
+        Scene scene = new Scene(loginView.getView(), 800, 600);
+        Stage stage = (Stage) view.getScene().getWindow();
         stage.setScene(scene);
     }
     
