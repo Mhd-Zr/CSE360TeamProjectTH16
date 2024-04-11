@@ -120,6 +120,7 @@ public class CreateAccountView {
         if (firstName.isEmpty() || lastName.isEmpty() || dob == null || phone.isEmpty() || email.isEmpty() || password.isEmpty() || role.isEmpty()) {
             // Display an error message if any field is empty
             // You can use an Alert or a Label to show the message
+        	AlertDialog.showErrorDialog("Creating Error", "Creating Failed", "All fields must have values.");
             return;
         }
 
@@ -141,6 +142,7 @@ public class CreateAccountView {
         } catch (IOException e) {
             e.printStackTrace();
             // Display an error message if file write fails
+            AlertDialog.showErrorDialog("Creating Error", "Creating User Failed", "Unable to create a new user.");
         }
     }
 

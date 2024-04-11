@@ -28,8 +28,10 @@ public class PatientView {
         Button messagesButton = new Button("Messages");
         messagesButton.setOnAction(e -> handleMessagesButton());
         
-        Button prescriptionsButton = new Button("Medical Prescriptions");
-        prescriptionsButton.setOnAction(e -> handlePrescriptionsButton());
+		/*
+		 * Button prescriptionsButton = new Button("Medical Prescriptions");
+		 * prescriptionsButton.setOnAction(e -> handlePrescriptionsButton());
+		 */
         
         Button appointmentsButton = new Button("Appointments");
         appointmentsButton.setOnAction(e -> handleAppointmentsButton());
@@ -41,7 +43,7 @@ public class PatientView {
         view = new VBox(10);
         view.setAlignment(Pos.CENTER);
         view.setPadding(new Insets(20));
-        view.getChildren().addAll(titleLabel, welcomeLabel, patientRecordsButton, messagesButton, prescriptionsButton,
+        view.getChildren().addAll(titleLabel, welcomeLabel, patientRecordsButton, messagesButton,
                 appointmentsButton, logoutButton);
     }
 
@@ -53,14 +55,17 @@ public class PatientView {
     }
 
     private void handlePatientRecordsButton() {
-        // TODO: Implement the patient records functionality
-        System.out.println("Patient Records button clicked");
+    	PatientRecordsView patientRecordsView = new PatientRecordsView(currentPatient);
+        Scene scene = new Scene(patientRecordsView.getView(), 800, 600);
+        Stage stage = (Stage) view.getScene().getWindow();
+        stage.setScene(scene);
     }
     
-    private void handlePrescriptionsButton() {
-        // TODO: Implement the prescriptions functionality
-        System.out.println("Medical Prescriptions button clicked");
-    }
+	/*
+	 * private void handlePrescriptionsButton() { // TODO: Implement the
+	 * prescriptions functionality
+	 * System.out.println("Medical Prescriptions button clicked"); }
+	 */
     
     private void handleAppointmentsButton() {
         AppointmentSchedulingView appointmentSchedulingView = new AppointmentSchedulingView(currentPatient);

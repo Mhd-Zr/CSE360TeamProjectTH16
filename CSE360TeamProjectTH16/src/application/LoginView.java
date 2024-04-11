@@ -169,6 +169,7 @@ public class LoginView {
         } catch (IOException e) {
             e.printStackTrace();
             // Display an error message if file read fails
+            AlertDialog.showErrorDialog("Loading Error", "Load Users Failed", "Unable to load users.");
         }
         return null;
     }
