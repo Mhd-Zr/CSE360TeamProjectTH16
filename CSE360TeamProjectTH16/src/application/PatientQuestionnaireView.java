@@ -102,6 +102,7 @@ public class PatientQuestionnaireView {
         } catch (IOException e) {
             e.printStackTrace();
             // Display an error message if file write fails
+            AlertDialog.showErrorDialog("Saving Error", "Saving Questionnaire Failed", "Unable to save quiestionnaire.");
         }
     }
 

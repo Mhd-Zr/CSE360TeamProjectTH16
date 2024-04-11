@@ -155,6 +155,7 @@ public class PatientRecordsView {
         } catch (IOException e) {
             e.printStackTrace();
             // Display an error message if file read fails
+            AlertDialog.showErrorDialog("Loading Error", "Loading Patient Records Failed", "Unable to load patient records.");
         }
     }
     
@@ -173,6 +174,7 @@ public class PatientRecordsView {
         } catch (IOException e) {
             e.printStackTrace();
             // Display an error message if file creation fails
+            AlertDialog.showErrorDialog("Saving Error", "Saving Patient Record Failed", "Unable to save patient records.");
         }
     }
 
@@ -182,6 +184,7 @@ public class PatientRecordsView {
         } catch (IOException e) {
             e.printStackTrace();
             // Display an error message if file write fails
+            AlertDialog.showErrorDialog("Updating Error", "Updating Patient Record Failed", "Unable to update patient record.");
         }
     }
 

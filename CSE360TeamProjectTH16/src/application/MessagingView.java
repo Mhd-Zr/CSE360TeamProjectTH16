@@ -49,8 +49,6 @@ public class MessagingView {
         recipientField = new TextField();
         recipientField.setPromptText("Enter recipient username");
 
-        //messageField = new TextField();
-        //messageField.setPromptText("Enter your message");
         Label messageLabel = new Label("Message:");
         messageField = new TextArea();
         messageField.setPromptText("Enter your message");
@@ -126,6 +124,7 @@ public class MessagingView {
         } catch (IOException e) {
             e.printStackTrace();
             // Display an error message if file write fails
+            AlertDialog.showErrorDialog("Sending Error", "Sending Message Failed", "Unable to send message.");
         }
     }
 
@@ -151,6 +150,7 @@ public class MessagingView {
             } catch (IOException e) {
                 e.printStackTrace();
                 // Display an error message if file read fails
+                AlertDialog.showErrorDialog("Loading Error", "Loading Conversations Failed", "Unable to load conversations.");
             }
         }
 
@@ -186,6 +186,7 @@ public class MessagingView {
             } catch (IOException e) {
                 e.printStackTrace();
                 // Display an error message if file read fails
+                AlertDialog.showErrorDialog("Loading Error", "Loading Messages Failed", "Unable to load messages.");
             }
         }
 

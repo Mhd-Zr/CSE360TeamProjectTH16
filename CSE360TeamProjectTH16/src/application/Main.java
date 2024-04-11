@@ -10,7 +10,6 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-			//BorderPane root = new BorderPane();
 			LoginView loginView = new LoginView();
 			Scene scene = new Scene(loginView.getView(), 800, 600);
 

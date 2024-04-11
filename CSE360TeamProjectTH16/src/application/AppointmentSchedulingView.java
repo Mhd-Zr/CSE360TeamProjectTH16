@@ -104,6 +104,7 @@ public class AppointmentSchedulingView {
             } catch (IOException e) {
                 e.printStackTrace();
                 // Display an error message if file read fails
+                AlertDialog.showErrorDialog("Loading Error", "Loading Times Failed", "Unable to load available times.");
             }
         } else {
             // Create a new file with default available times if it doesn't exist
@@ -113,6 +114,7 @@ public class AppointmentSchedulingView {
             } catch (IOException e) {
                 e.printStackTrace();
                 // Display an error message if file creation fails
+                AlertDialog.showErrorDialog("Saving Error", "Saving Times Failed", "Unable to save available times.");
             }
         }
     }
@@ -125,11 +127,12 @@ public class AppointmentSchedulingView {
         try (FileWriter writer = new FileWriter("appointments.txt", true)) {
             writer.write(appointmentDetails + "\n");
             writer.write("-----------------------------\n");
-            System.out.println("Appointment scheduled successfully!");
+            AlertDialog.showConfirmationDialog("Saving Success", "Saving Appointment", "Appointment scheduled successfully!");
             removeSelectedTime(date, time);
         } catch (IOException e) {
             e.printStackTrace();
             // Display an error message if file write fails
+            AlertDialog.showErrorDialog("Saving Error", "Saving Appointment Failed", "Unable to schedule a new appointment.");
         }
     }
     
@@ -144,6 +147,7 @@ public class AppointmentSchedulingView {
             } catch (IOException e) {
                 e.printStackTrace();
                 // Display an error message if file update fails
+                AlertDialog.showErrorDialog("Updating Error", "Updating Times Failed", "Unable to update available times.");
             }
         }
     }
