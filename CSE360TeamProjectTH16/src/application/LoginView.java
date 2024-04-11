@@ -193,11 +193,10 @@ public class LoginView {
 
     private void navigateToPatientView(User user) {
         // Create an instance of PatientView and navigate to it
-		/*
-		 * PatientView patientView = new PatientView(user); Scene scene = new
-		 * Scene(patientView.getView(), 800, 600); Stage stage = (Stage)
-		 * view.getScene().getWindow(); stage.setScene(scene);
-		 */
+    	PatientView patientView = new PatientView(user);
+    	Scene scene = new Scene(patientView.getView(), 800, 600);
+    	Stage stage = (Stage) view.getScene().getWindow();
+    	stage.setScene(scene);
     }
 
     private void handleCreateAccount() {

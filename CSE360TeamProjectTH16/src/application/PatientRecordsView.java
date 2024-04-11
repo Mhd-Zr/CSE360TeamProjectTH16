@@ -54,10 +54,12 @@ public class PatientRecordsView {
         updateButton.setOnAction(e -> handleUpdateButton());
         
         if (currentUser.getRole().equals("Doctor")) {
+        	newPatientField.setVisible(true);
             updateButton.setVisible(true);
             createButton.setVisible(true);
         } else if (currentUser.getRole().equals("Nurse")) {
-            updateButton.setVisible(false);
+        	newPatientField.setVisible(false);
+        	updateButton.setVisible(false);
             createButton.setVisible(false);
         }
 

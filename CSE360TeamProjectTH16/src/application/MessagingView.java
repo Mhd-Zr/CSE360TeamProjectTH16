@@ -216,13 +216,15 @@ public class MessagingView {
     }
 
     private void navigateToPatientView(User user) {
-		/*
-		 * PatientView patientView = new PatientView(user);
-		 * Scene scene = new Scene(patientView.getView(), 800, 600);
-		 * Stage stage = (Stage) view.getScene().getWindow();
-		 * scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-		 * stage.setScene(scene);
-		 */
+
+
+		 PatientView patientView = new PatientView(user);
+		 Scene scene = new Scene(patientView.getView(), 800, 600);
+		 Stage stage = (Stage) view.getScene().getWindow();
+		 scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+		 stage.setScene(scene);
+		 
+
     }
 
     public BorderPane getView() {
