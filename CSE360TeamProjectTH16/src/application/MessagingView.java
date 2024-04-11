@@ -203,6 +203,7 @@ public class MessagingView {
         DoctorView doctorView = new DoctorView(user);
         Scene scene = new Scene(doctorView.getView(), 800, 600);
         Stage stage = (Stage) view.getScene().getWindow();
+        scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
         stage.setScene(scene);
     }
 
@@ -210,14 +211,20 @@ public class MessagingView {
         NurseView nurseView = new NurseView(user);
         Scene scene = new Scene(nurseView.getView(), 800, 600);
         Stage stage = (Stage) view.getScene().getWindow();
+        scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
         stage.setScene(scene);
     }
 
     private void navigateToPatientView(User user) {
-    	PatientView patientView = new PatientView(user);
-    	Scene scene = new Scene(patientView.getView(), 800, 600);
-    	Stage stage = (Stage) view.getScene().getWindow();
-    	stage.setScene(scene);
+
+
+		 PatientView patientView = new PatientView(user);
+		 Scene scene = new Scene(patientView.getView(), 800, 600);
+		 Stage stage = (Stage) view.getScene().getWindow();
+		 scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+		 stage.setScene(scene);
+		 
+
     }
 
     public BorderPane getView() {

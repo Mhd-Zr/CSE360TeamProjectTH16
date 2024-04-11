@@ -42,6 +42,7 @@ public class NurseView {
     	MessagingView messagingView = new MessagingView(currentUser);
         Scene scene = new Scene(messagingView.getView(), 800, 600);
         Stage stage = (Stage) view.getScene().getWindow();
+        scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
         stage.setScene(scene);
     }
 
@@ -49,6 +50,7 @@ public class NurseView {
     	PatientQuestionnaireView questionnaireView = new PatientQuestionnaireView(currentUser);
         Scene scene = new Scene(questionnaireView.getView(), 800, 600);
         Stage stage = (Stage) view.getScene().getWindow();
+        scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
         stage.setScene(scene);
     }
     
@@ -56,6 +58,7 @@ public class NurseView {
         PatientRecordsView patientRecordsView = new PatientRecordsView(currentUser);
         Scene scene = new Scene(patientRecordsView.getView(), 800, 600);
         Stage stage = (Stage) view.getScene().getWindow();
+        scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
         stage.setScene(scene);
     }
 
@@ -64,6 +67,7 @@ public class NurseView {
         LoginView loginView = new LoginView();
         Scene scene = new Scene(loginView.getView(), 800, 600);
         Stage stage = (Stage) view.getScene().getWindow();
+        scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
         stage.setScene(scene);
     }
 

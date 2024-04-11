@@ -14,6 +14,9 @@ public class Main extends Application {
 			LoginView loginView = new LoginView();
 			Scene scene = new Scene(loginView.getView(), 800, 600);
 
+			//scene.getStylesheets().add(getClass().getResource("app.css").toExternalForm());
+			String css = this.getClass().getResource("application.css").toExternalForm();
+			scene.getStylesheets().add(css);
 			primaryStage.setScene(scene);
 			primaryStage.show();
 		} catch(Exception e) {

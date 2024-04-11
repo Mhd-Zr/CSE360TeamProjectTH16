@@ -120,6 +120,7 @@ public class PatientRecordsView {
         DoctorView doctorView = new DoctorView(currentUser);
         Scene scene = new Scene(doctorView.getView(), 800, 600);
         Stage stage = (Stage) view.getScene().getWindow();
+        scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
         stage.setScene(scene);
     }
 
