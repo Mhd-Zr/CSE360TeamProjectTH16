@@ -153,7 +153,7 @@ public class LoginView {
                 if (userData.length == 7) {
                     String storedUsername = userData[4];
                     String storedPassword = userData[5];
-                    System.out.println(storedUsername);
+                    
                     if (username.equals(storedUsername) && password.equals(storedPassword)) {
                     	// Create a User object with the authenticated user's details
                         String firstName = userData[0];

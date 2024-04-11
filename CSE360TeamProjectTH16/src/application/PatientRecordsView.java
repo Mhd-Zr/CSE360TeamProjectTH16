@@ -189,23 +189,23 @@ public class PatientRecordsView {
         }
     }
 
+    private void loadPatientList() {
+    	patientList.getItems().clear();
+    	File folder = new File("patient_records");
+    	if (!folder.exists()) {
+    		folder.mkdirs(); // Create the directory if it doesn't exist
+    	}
+    	File[] files = folder.listFiles();
+    	if (files != null) {
+    		for (File file : files) {
+    			String patientName = file.getName().replace(".txt", "");
+    			patientList.getItems().add(patientName);
+    		}
+    	}
+    }
+    
     public BorderPane getView() {
         loadPatientList();
         return view;
-    }
-
-    private void loadPatientList() {
-        patientList.getItems().clear();
-        File folder = new File("patient_records");
-        if (!folder.exists()) {
-            folder.mkdirs(); // Create the directory if it doesn't exist
-        }
-        File[] files = folder.listFiles();
-        if (files != null) {
-            for (File file : files) {
-                String patientName = file.getName().replace(".txt", "");
-                patientList.getItems().add(patientName);
-            }
-        }
     }
 }
