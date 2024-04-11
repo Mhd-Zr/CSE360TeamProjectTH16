@@ -25,16 +25,14 @@ public class PatientView {
         Button patientRecordsButton = new Button("Personal Records");
         patientRecordsButton.setOnAction(e -> handlePatientRecordsButton());
         
-        Button messagesButton = new Button("Messages");
-        messagesButton.setOnAction(e -> handleMessagesButton());
-        
-		/*
-		 * Button prescriptionsButton = new Button("Medical Prescriptions");
-		 * prescriptionsButton.setOnAction(e -> handlePrescriptionsButton());
-		 */
+        Button prescriptionsButton = new Button("Medical Prescriptions");
+        prescriptionsButton.setOnAction(e -> handlePrescriptionsButton());
         
         Button appointmentsButton = new Button("Appointments");
         appointmentsButton.setOnAction(e -> handleAppointmentsButton());
+        
+        Button messagesButton = new Button("Messages");
+        messagesButton.setOnAction(e -> handleMessagesButton());
 
         Button logoutButton = new Button("Logout");
         logoutButton.setOnAction(e -> handleLogoutButton());
@@ -43,8 +41,8 @@ public class PatientView {
         view = new VBox(10);
         view.setAlignment(Pos.CENTER);
         view.setPadding(new Insets(20));
-        view.getChildren().addAll(titleLabel, welcomeLabel, patientRecordsButton, messagesButton,
-                appointmentsButton, logoutButton);
+        view.getChildren().addAll(titleLabel, welcomeLabel, patientRecordsButton, prescriptionsButton,
+                appointmentsButton, messagesButton, logoutButton);
     }
 
     private void handleMessagesButton() {
@@ -55,21 +53,23 @@ public class PatientView {
     }
 
     private void handlePatientRecordsButton() {
-    	PatientRecordsView patientRecordsView = new PatientRecordsView(currentPatient);
-        Scene scene = new Scene(patientRecordsView.getView(), 800, 600);
+    	OnePatientRecordsView recordsView = new OnePatientRecordsView(currentPatient);
+        Scene scene = new Scene(recordsView.getView(), 800, 600);
         Stage stage = (Stage) view.getScene().getWindow();
         stage.setScene(scene);
     }
     
-	/*
-	 * private void handlePrescriptionsButton() { // TODO: Implement the
-	 * prescriptions functionality
-	 * System.out.println("Medical Prescriptions button clicked"); }
-	 */
+    private void handlePrescriptionsButton() {
+    	PatientPrescriptionView prescriptionView = new PatientPrescriptionView(currentPatient);
+        Scene scene = new Scene(prescriptionView.getView(), 800, 600);
+        Stage stage = (Stage) view.getScene().getWindow();
+        stage.setScene(scene);
+    }
+	 
     
     private void handleAppointmentsButton() {
-        AppointmentSchedulingView appointmentSchedulingView = new AppointmentSchedulingView(currentPatient);
-        Scene scene = new Scene(appointmentSchedulingView.getView(), 800, 600);
+    	PatientAppointmentsView appointmentsView = new PatientAppointmentsView(currentPatient);
+        Scene scene = new Scene(appointmentsView.getView(), 800, 600);
         Stage stage = (Stage) view.getScene().getWindow();
         stage.setScene(scene);
     }

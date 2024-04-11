@@ -24,6 +24,9 @@ public class DoctorView {
 
         Button patientRecordsButton = new Button("Patient Records");
         patientRecordsButton.setOnAction(e -> handlePatientRecordsButton());
+        
+        Button prescriptionsButton = new Button("Medical Prescriptions");
+        prescriptionsButton.setOnAction(e -> handlePrescriptionsButton());
 
         Button logoutButton = new Button("Logout");
         logoutButton.setOnAction(e -> handleLogoutButton());
@@ -32,7 +35,7 @@ public class DoctorView {
         view = new VBox(10);
         view.setAlignment(Pos.CENTER);
         view.setPadding(new Insets(20));
-        view.getChildren().addAll(titleLabel, messagesButton, patientRecordsButton, logoutButton);
+        view.getChildren().addAll(titleLabel, messagesButton, patientRecordsButton, prescriptionsButton, logoutButton);
     }
 
     private void handleMessagesButton() {
@@ -45,6 +48,13 @@ public class DoctorView {
     private void handlePatientRecordsButton() {
     	PatientRecordsView patientRecordsView = new PatientRecordsView(currentUser);
         Scene scene = new Scene(patientRecordsView.getView(), 800, 600);
+        Stage stage = (Stage) view.getScene().getWindow();
+        stage.setScene(scene);
+    }
+    
+    private void handlePrescriptionsButton() {
+        PrescriptionView prescriptionView = new PrescriptionView(currentUser);
+        Scene scene = new Scene(prescriptionView.getView(), 800, 600);
         Stage stage = (Stage) view.getScene().getWindow();
         stage.setScene(scene);
     }
